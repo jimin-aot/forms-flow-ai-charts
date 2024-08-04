@@ -19,6 +19,9 @@ spec:
     metadata:
       labels:
         app: "{{ .Chart.Name }}"
+        {{- if .Values.clientConfig.bcGov.enabled }}
+        DataClass: {{ .Values.clientConfig.bcGov.dataClass | quote }}
+        {{- end }}
     spec:
       containers:
       {{- if .Values.elastic_search.enabled }} 

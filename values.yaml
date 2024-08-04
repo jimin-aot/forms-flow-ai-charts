@@ -1,0 +1,5 @@
+global:
+  clientConfig:
+    bcGov:
+      enabled: true
+      dataClass: 'Medium'

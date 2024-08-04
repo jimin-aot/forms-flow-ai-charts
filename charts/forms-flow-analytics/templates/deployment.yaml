@@ -18,6 +18,9 @@ spec:
     metadata:
       labels:
         app: "{{ .Chart.Name }}-server"
+        {{- if .Values.clientConfig.bcGov.enabled }}
+        DataClass: {{ .Values.clientConfig.bcGov.dataClass | quote }}
+        {{- end }}
       name: "{{ .Chart.Name }}-server"
     spec:
       containers:

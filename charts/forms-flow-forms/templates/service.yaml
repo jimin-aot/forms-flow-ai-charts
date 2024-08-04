@@ -3,6 +3,9 @@ kind: Service
 metadata:
   labels:
     app: {{ .Chart.Name }}
+    {{- if .Values.global.clientConfig.bcGov.enabled }}
+    DataClass: {{ .Values.global.clientConfig.bcGov.dataClass | quote }}
+    {{- end }}    
   name: {{ .Chart.Name }}
 spec:
   ports:
