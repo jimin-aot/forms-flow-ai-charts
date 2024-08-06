@@ -5,7 +5,9 @@ metadata:
     app: {{ .Chart.Name }}
   name: {{ .Chart.Name }}
   annotations:
-{{ toYaml .Values.ingress.annotations | indent 4 }}
+    {{- toYaml .Values.ingress.annotations | nindent 4 }}
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   {{- if or (and .Values.ingress.tls (or ( dict "annotations" .Values.ingress.annotations ) .Values.ingress.selfSigned .Values.ingress.secrets )) .Values.ingress.extraTls }}
@@ -26,8 +28,8 @@ spec:
       host: "{{ tpl .Values.ingress.hostname .}}"
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /admin/(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: {{ .Chart.Name }}
