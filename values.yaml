@@ -1,4 +1,6 @@
 global:
+  ingress:
+    hostname: #<DEFINE_ME>
   clientConfig:
     bcGov:
       enabled: true
