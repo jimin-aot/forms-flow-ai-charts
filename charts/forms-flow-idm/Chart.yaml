@@ -5,9 +5,10 @@ version: v7.0.4
 dependencies:
   - name: keycloak
     version: 19.1.0
-    repository: "https://charts.bitnami.com/bitnami"
+    repository: 'https://charts.bitnami.com/bitnami'
+    condition: keycloak.enabled
   - name: postgresql-ha
-    condition: postgresql-ha.enabled 
+    condition: postgresql-ha.enabled
     repository: https://charts.bitnami.com/bitnami
     version: 14.2.3
-icon: "https://raw.githubusercontent.com/AOT-Technologies/forms-flow-ai/develop/.images/logo.png"
+icon: 'https://raw.githubusercontent.com/AOT-Technologies/forms-flow-ai/develop/.images/logo.png'

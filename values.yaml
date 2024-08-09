@@ -1,6 +1,14 @@
 global:
+  keycloak:
+    enabled: true # Default to true for non-government clients
+    external:
+      url: #<DEFINE_ME>
+  postgresql-ha:
+    enabled: true # Default to true for non-government clients
+
   ingress:
     hostname: #<DEFINE_ME>
+
   clientConfig:
     bcGov:
       enabled: true
