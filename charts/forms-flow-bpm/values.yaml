@@ -50,7 +50,7 @@ ingress:
     nginx.ingress.kubernetes.io/affinity: 'cookie'
     nginx.ingress.kubernetes.io/session-cookie-name: 'session'
   enabled: true # create an ingress for this component
-  hostname: '{{ .Values.global.ingress.hostname }}-{{.Release.Namespace}}.{{tpl .Values.Domain .}}'
+  hostname: '{{ tpl .Values.global.ingress.hostname_template . }}'
   port: 8080
   tls: true
   selfSigned: false

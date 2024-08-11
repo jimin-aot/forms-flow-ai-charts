@@ -7,7 +7,8 @@ global:
     enabled: true # Default to true for non-government clients
 
   ingress:
-    hostname: #<DEFINE_ME>
+    base_hostname: formsflow
+    hostname_template: '{{ .Values.global.ingress.base_hostname }}-{{ .Release.Namespace }}.{{ tpl .Values.Domain . }}'
 
   clientConfig:
     bcGov:

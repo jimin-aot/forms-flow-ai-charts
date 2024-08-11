@@ -31,7 +31,7 @@ ingress:
   annotations:
 
   enabled: true # create an ingress for this component
-  hostname: '{{ .Values.global.ingress.hostname }}-{{.Release.Namespace}}.{{tpl .Values.Domain .}}'
+  hostname: '{{ tpl .Values.global.ingress.hostname_template . }}'
   port: 5000
   tls: true
   selfSigned: false
