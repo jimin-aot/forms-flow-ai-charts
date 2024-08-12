@@ -16,13 +16,13 @@ image:
 ingress:
   ingressClassName: ""
   annotations:
-  enabled: true # create an ingress for this component 
-  hostname: "{{.Chart.Name}}-{{.Release.Namespace}}.{{tpl .Values.Domain .}}"
+  enabled: true # create an ingress for this component
+  hostname: "{{ tpl .Values.global.ingress.hostname_template . }}"
   port: 3001
   tls: true
   selfSigned: false
   extraTls:
-   - {} 
+    - {}
 resources:
   limits:
     cpu: 200m
@@ -31,7 +31,7 @@ resources:
     cpu: 100m
     memory: 512Mi
 hpa:
-  enabled: false 
+  enabled: false
   CpuAverageUtilization: 70
   maxReplicas: 3
 elastic_search:

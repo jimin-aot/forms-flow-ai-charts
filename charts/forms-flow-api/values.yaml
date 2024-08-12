@@ -2,18 +2,18 @@
 Domain: #<DEFINE_ME>
 replicas: 1
 database:
-  username: 'postgres'
-  password: 'postgres'
-  dbName: 'forms-flow-api'
-  host: 'forms-flow-ai-postgresql-ha-pgpool'
+  username: "postgres"
+  password: "postgres"
+  dbName: "forms-flow-api"
+  host: "forms-flow-ai-postgresql-ha-pgpool"
   port: 5432
-  url: 'postgresql://${FORMSFLOW_API_DB_USER}:${FORMSFLOW_API_DB_PASSWORD}@${FORMSFLOW_API_HOSTNAME}:5432/${FORMSFLOW_API_DB_NAME}'
+  url: "postgresql://${FORMSFLOW_API_DB_USER}:${FORMSFLOW_API_DB_PASSWORD}@${FORMSFLOW_API_HOSTNAME}:5432/${FORMSFLOW_API_DB_NAME}"
 ExternalDatabase:
-  ExistingDatabaseNameKey: ''
-  ExistingDatabaseUserNameKey: ''
-  ExistingDatabasePasswordKey: ''
-  ExistingDatabaseHostKey: ''
-  ExistingSecretName: '' #name of the existing secret
+  ExistingDatabaseNameKey: ""
+  ExistingDatabaseUserNameKey: ""
+  ExistingDatabasePasswordKey: ""
+  ExistingDatabaseHostKey: ""
+  ExistingSecretName: "" #name of the existing secret
 
 resources:
   limits:
@@ -27,11 +27,11 @@ formsflow:
   secret: forms-flow-ai #name of formsflow.ai secret
   auth: forms-flow-ai-auth
 ingress:
-  ingressClassName: ''
+  ingressClassName: ""
   annotations:
 
   enabled: true # create an ingress for this component
-  hostname: '{{ tpl .Values.global.ingress.hostname_template . }}'
+  hostname: "{{ tpl .Values.global.ingress.hostname_template . }}"
   port: 5000
   tls: true
   selfSigned: false

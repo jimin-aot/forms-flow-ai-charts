@@ -9,13 +9,13 @@ formsflow:
   secret: forms-flow-ai #name of formsflow.ai secret
   auth: forms-flow-ai-auth
 web:
-  base_custom_url: ''
-  custom_theme_url: ''
+  base_custom_url: ""
+  custom_theme_url: ""
 ingress:
-  ingressClassName: ''
+  ingressClassName: ""
   annotations:
   enabled: true # create an ingress for this component
-  hostname: '{{ tpl .Values.global.ingress.hostname_template . }}'
+  hostname: "{{ tpl .Values.global.ingress.hostname_template . }}"
   port: 8080
   tls: true
   selfSigned: false
@@ -33,6 +33,6 @@ image:
   repository: formsflow/forms-flow-web
   tag: v6.0.0
 config_path: /usr/share/nginx/html/config/
-webclient: '{{.Chart.Name}}'
+webclient: "{{.Chart.Name}}"
 webname: formsflow
-UserAccesPermissions: ''
+UserAccesPermissions: ""

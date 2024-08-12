@@ -10,7 +10,7 @@ camunda:
     name: forms-flow-bpm
     port: 5432
   historyLevel: auto
-  securityOrigin: '*'
+  securityOrigin: "*"
   logLevel: INFO
   formBuilder:
     password: demo # CAMUNDA_FORMBUILDER_PIPELINE_PASSWORD
@@ -26,15 +26,15 @@ camunda:
     driver: org.postgresql.Driver
     username: postgres
     password: postgres
-    url: 'jdbc:postgresql://${CAMUNDA_DATABASE_SERVICE_NAME}:${CAMUNDA_DATABASE_PORT}/${CAMUNDA_DATABASE_NAME}'
+    url: "jdbc:postgresql://${CAMUNDA_DATABASE_SERVICE_NAME}:${CAMUNDA_DATABASE_PORT}/${CAMUNDA_DATABASE_NAME}"
   websocket:
     messageType: TASK_EVENT #WEBSOCKET_MESSAGE_TYPE
     securityOrigin: #WEBSOCKET_SECURITY_ORIGIN
   externalDatabase:
-    existingDatabaseHostKey: ''
-    existingDatabasePortKey: ''
-    existingDatabaseNameKey: ''
-    existingSecretName: '' #name of the existing secret
+    existingDatabaseHostKey: ""
+    existingDatabasePortKey: ""
+    existingDatabaseNameKey: ""
+    existingSecretName: "" #name of the existing secret
 
 image:
   registry: docker.io
@@ -45,12 +45,12 @@ formsflow:
   secret: forms-flow-ai #name of formsflow.ai secret
   auth: forms-flow-ai-auth
 ingress:
-  ingressClassName: ''
+  ingressClassName: ""
   annotations:
-    nginx.ingress.kubernetes.io/affinity: 'cookie'
-    nginx.ingress.kubernetes.io/session-cookie-name: 'session'
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "session"
   enabled: true # create an ingress for this component
-  hostname: '{{ tpl .Values.global.ingress.hostname_template . }}'
+  hostname: "{{ tpl .Values.global.ingress.hostname_template . }}"
   port: 8080
   tls: true
   selfSigned: false
@@ -58,15 +58,15 @@ ingress:
     - {}
 mail:
   protocol: smtp
-  from: '<DEFINE_ME>'
-  password: '<DEFINE_ME>'
-  user: '<DEFINE_ME>'
+  from: "<DEFINE_ME>"
+  password: "<DEFINE_ME>"
+  user: "<DEFINE_ME>"
   alias: DoNotReply
   folder: INBOX
   smtp:
     auth: true
     port: 5432
-    server: '<DEFINE_ME>'
+    server: "<DEFINE_ME>"
     socketFactory:
       port: 465
       class: javax.net.ssl.SSLSocketFactory
@@ -95,4 +95,4 @@ hpa:
   maxReplicas: 3
 elastic_search:
   enabled: false
-waitFor: '${CAMUNDA_DATABASE_SERVICE_NAME}:${CAMUNDA_DATABASE_PORT}'
+waitFor: "${CAMUNDA_DATABASE_SERVICE_NAME}:${CAMUNDA_DATABASE_PORT}"
