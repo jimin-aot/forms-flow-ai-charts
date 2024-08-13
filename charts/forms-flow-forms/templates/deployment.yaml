@@ -45,28 +45,28 @@ spec:
             configMapKeyRef:
               key: NODE_CONFIG
               name: "{{ .Values.formsflow.configmap }}"
-        {{- if .Values.ExternalAuth.ExistingMailAuthKey }}
+        {{- if .Values.global.externalAuth.ExistingMailAuthKey }}
         - name: ROOT_EMAIL
           valueFrom:
             secretKeyRef:
-              key: {{ .Values.ExternalAuth.ExistingMailAuthKey }}
-              name: "{{ .Values.ExternalAuth.ExistingSecretName }}"
+              key: {{ .Values.global.externalAuth.ExistingMailAuthKey }}
+              name: "{{ .Values.global.externalAuth.ExistingSecretName }}"
         {{- end }}
-        {{- if not .Values.ExternalAuth.ExistingMailAuthKey }}
+        {{- if not .Values.global.externalAuth.ExistingMailAuthKey }}
         - name: ROOT_EMAIL
           valueFrom:
             secretKeyRef:
               key: FORMIO_ROOT_EMAIL
               name: "{{ .Values.formsflow.secret }}"
         {{- end }}
-        {{- if .Values.ExternalAuth.ExistingPwdAuthKey }}
+        {{- if .Values.global.externalAuth.ExistingPwdAuthKey }}
         - name: ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              key: {{ .Values.ExternalAuth.ExistingPwdAuthKey }}
-              name: "{{ .Values.ExternalAuth.ExistingSecretName }}"
+              key: {{ .Values.global.externalAuth.ExistingPwdAuthKey }}
+              name: "{{ .Values.global.externalAuth.ExistingSecretName }}"
         {{- end }}
-        {{- if not .Values.ExternalAuth.ExistingPwdAuthKey }}
+        {{- if not .Values.global.externalAuth.ExistingPwdAuthKey }}
         - name: ROOT_PASSWORD
           valueFrom:
             secretKeyRef:

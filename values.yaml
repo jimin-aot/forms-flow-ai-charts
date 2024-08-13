@@ -3,14 +3,20 @@ global:
     enabled: true # Default to true for non-government clients
     external:
       url: #<DEFINE_ME>
+
   postgresql-ha:
     enabled: true # Default to true for non-government clients
 
   ingress:
     base_hostname: formsflow
-    hostname_template: '{{ .Values.global.ingress.base_hostname }}-{{ .Release.Namespace }}.{{ tpl .Values.Domain . }}'
+    hostname_template: "{{ .Values.global.ingress.base_hostname }}-{{ .Release.Namespace }}.{{ tpl .Values.Domain . }}"
 
   clientConfig:
     bcGov:
       enabled: true
-      dataClass: 'Medium'
+      dataClass: "Medium"
+
+  externalAuth:
+    existingMailAuthKey: ""
+    existingPwdAuthKey: ""
+    existingSecretName: ""
