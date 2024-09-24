@@ -21,7 +21,7 @@ spec:
         fsGroup: 2000 # Setting the file system group
       containers:
         - name: {{include "redash.scheduler.fullname" .}}
-          image: '{{ .Values.redash.image.registry }}/{{ .Values.redash.image.repository }}:{{ .Values.redash.image.tag }}'
+          image: "{{ .Values.redash.image.registry }}/{{ .Values.redash.image.repository }}:{{ .Values.redash.image.tag }}"
           imagePullPolicy: Always
           securityContext:
             runAsNonRoot: true
@@ -34,13 +34,13 @@ spec:
             - scheduler
           envFrom:
             - configMapRef:
-                name: '{{ .Values.formsflow.configmap }}' # Default Redash environment variables
+                name: "{{ .Chart.Name }}" # default redash environment variables
             - secretRef:
-                name: '{{ .Chart.Name }}' # default redash environment variables
+                name: "{{ .Chart.Name }}" # default redash environment variables
           resources:
             limits:
-              cpu: '{{ .Values.resources.limits.cpu }}'
-              memory: '{{ .Values.resources.limits.memory }}'
+              cpu: "{{ .Values.resources.limits.cpu }}"
+              memory: "{{ .Values.resources.limits.memory }}"
             requests:
-              cpu: '{{ .Values.resources.requests.cpu }}'
-              memory: '{{ .Values.resources.requests.memory }}'
+              cpu: "{{ .Values.resources.requests.cpu }}"
+              memory: "{{ .Values.resources.requests.memory }}"

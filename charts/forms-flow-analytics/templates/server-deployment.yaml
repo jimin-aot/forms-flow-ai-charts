@@ -26,32 +26,11 @@ spec:
         args:
           - server
         envFrom:
-          - configMapRef:
-              name: '{{ .Values.formsflow.configmap }}'
-          - secretRef:
-              name: '{{ .Chart.Name }}'
+        - configMapRef:
+            name: "{{ .Chart.Name }}" # default redash environment variables
+        - secretRef:
+            name: "{{ .Chart.Name }}" # default redash environment variables
         env:
-          # - name: DATABASE_NAME
-          #   valueFrom:
-          #     configMapKeyRef:
-          #       key: DATABASE_NAME
-          #       name: '{{ .Values.formsflow.configmap }}'
-          # - name: DATABASE_PORT
-          #   valueFrom:
-          #     configMapKeyRef:
-          #       key: DATABASE_PORT
-          #       name: '{{ .Values.formsflow.configmap }}'
-          # - name: DATABASE_SERVICE_NAME
-          #   valueFrom:
-          #     configMapKeyRef:
-          #       key: DATABASE_SERVICE_NAME
-          #       name: '{{ .Values.formsflow.configmap }}'
-          # - name: REDASH_WEB_WORKERS
-          #   value: '4'
-          # - name: REDASH_GUNICORN_TIMEOUT
-          #   value: '1200'
-          # - name: REDASH_MULTI_ORG
-          #   value: '{{ .Values.redash.multiorg }}'
           {{- if .Values.externalDatabase.existingDatabaseUrlKey }}
           - name: REDASH_DATABASE_URL
             valueFrom:
