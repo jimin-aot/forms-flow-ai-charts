@@ -1,13 +1,13 @@
 Domain: #<DEFINE_ME>
 
 database:
-  username: postgres 
+  username: postgres
   password: postgres
   servicename: forms-flow-ai-postgresql-ha-pgpool
   port: 5432
   url: "postgresql://{{.Values.database.username}}:{{.Values.database.password}}@{{.Values.database.servicename}}:{{.Values.database.port}}/{{.Chart.Name}}"
 externalDatabase:
-  existingDatabaseUrlKey: "" 
+  existingDatabaseUrlKey: ""
   existingSecretName: "" #name of the existing secret
 
 formsflow:
@@ -15,12 +15,11 @@ formsflow:
   # secret: forms-flow-ai #name of formsflow.ai secret
   auth: forms-flow-ai-auth
 
-
 ingress:
-  ingressClassName: ''
+  ingressClassName: ""
   annotations: {}
   enabled: true # create an ingress for this component
-  hostname: '{{ .Chart.Name }}-{{ .Release.Namespace }}.{{ .Values.Domain }}'
+  hostname: "{{ .Chart.Name }}-{{ .Release.Namespace }}.{{ .Values.Domain }}"
   port: 5000
   tls: true
   selfSigned: false
@@ -50,15 +49,15 @@ redis-exporter:
       memory: 256Mi
 
 redash:
-  multiorg: 'false'
+  multiorg: "false"
   image:
     registry: docker.io #registry to use
     repository: formsflow/redash # repoisitory for redash image
     tag: 24.04.0 # tag of image being used
     pullPolicy: Always
   database:
-    password: '{{ .Values.database.password }}'
-    url: 'postgresql://{{ .Values.database.username }}:{{ .Values.database.password }}@{{ .Values.database.servicename }}:5432/postgres'
+    password: "{{ .Values.database.password }}"
+    url: "postgresql://{{ .Values.database.username }}:{{ .Values.database.password }}@{{ .Values.database.servicename }}:5432/postgres"
 resources:
   limits:
     cpu: "2000m"
