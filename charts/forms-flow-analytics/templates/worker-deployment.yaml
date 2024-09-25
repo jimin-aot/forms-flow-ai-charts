@@ -5,21 +5,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "redash.worker.fullname" $context }}
+  name: "{{ $.Chart.Name }}-{{ $workerName }}-worker"
   labels:
-    app: {{ include "redash.worker.fullname" $context | quote }}
+    app: "{{ $.Chart.Name }}-{{ $workerName }}-worker"
 spec:
   replicas: {{ $workerConfig.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "redash.worker.fullname" $context | quote }}
+      app: "{{ $.Chart.Name }}-{{ $workerName }}-worker"
   template:
     metadata:
       labels:
-        app: {{ include "redash.worker.fullname" $context | quote }}
+        app: "{{ $.Chart.Name }}-{{ $workerName }}-worker"
     spec:
       containers:
-        - name: {{ include "redash.worker.fullname" $context | quote }}
+        - name: "{{ $.Chart.Name }}-{{ $workerName }}-worker"
           image: "{{ $.Values.redash.image.registry}}/{{ $.Values.redash.image.repository }}:{{ $.Values.redash.image.tag }}"
           imagePullPolicy: Always
           args:
@@ -32,9 +32,6 @@ spec:
           {{- end }}
           env:
           {{- $envCtx := mergeOverwrite (deepCopy $) (dict "Values" (dict "env" $workerConfig.env)) }}
-          {{- with (include "redash.envFrom" $) }}
-          envFrom: {{ . | nindent 10 }}
-          {{- end }}
           {{- with $workerConfig.resources }}
           resources: {{ toYaml . | nindent 10 }}
           {{- end }}

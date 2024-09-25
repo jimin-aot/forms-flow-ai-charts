@@ -3,24 +3,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: {{include "redash.scheduler.fullname" .}}
-  name: {{include "redash.scheduler.fullname" .}}
+    app: "{{ .Chart.Name }}-scheduler"
+  name: "{{ .Chart.Name }}-scheduler"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{include "redash.scheduler.fullname" .}}
+      app: "{{ .Chart.Name }}-scheduler"
   strategy: {}
   template:
     metadata:
       labels:
-        app: {{include "redash.scheduler.fullname" .}}
+        app: "{{ .Chart.Name }}-scheduler"
     spec:
       restartPolicy: Always
       securityContext:
         fsGroup: 2000 # Setting the file system group
       containers:
-        - name: {{include "redash.scheduler.fullname" .}}
+        - name: "{{ .Chart.Name }}-scheduler"
           image: "{{ .Values.redash.image.registry }}/{{ .Values.redash.image.repository }}:{{ .Values.redash.image.tag }}"
           imagePullPolicy: Always
           securityContext:
